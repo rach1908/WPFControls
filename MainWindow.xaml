@@ -1,0 +1,84 @@
+﻿<Window x:Class="EX4_WPFControls.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EX4_WPFControls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="2*"/>
+      <ColumnDefinition Width="3*"/>
+    </Grid.ColumnDefinitions>
+    <GroupBox
+      Header="Film(ny)" Margin="10,10,5,10" Grid.ColumnSpan="1">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="2*"/>
+          <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="2*"/>
+          <RowDefinition Height="2*"/>
+          <RowDefinition Height="2*"/>
+          <RowDefinition Height="2*"/>
+          <RowDefinition Height="3*"/>
+          <RowDefinition Height="2*"/>
+          <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Titel:" Grid.Row="0" Margin="10"/>
+        <TextBox x:Name="tbx_title" Grid.Column="1" Margin="10"/>
+        <Label Content="Udgivelses-dato:" Grid.Row="1" Margin="10"/>
+        <DatePicker x:Name="dtp_releaseDate" Grid.Row="1" Grid.Column="1" Margin="10"/>
+        <Label Content="Instruktør:" Grid.Row="2" Margin="10"/>
+        <TextBox x:Name="tbx_instructor" Text="&#xD;&#xA;" Grid.Row="2" Grid.Column="1" Margin="10"/>
+        <Label Content="Farve:" Grid.Row="3" Margin="10"/>
+        <CheckBox x:Name="chx_color" Grid.Row="3" Grid.Column="1" Margin="10, 20, 10, 10"/>
+        <Label Content="Format:" Grid.Row="4" Margin="10"/>
+        <StackPanel x:Name="spl_ratio" Grid.Row="4" Grid.Column="1" Margin="10">
+          <RadioButton x:Name="rbtn_ratio1" Content="16:9" IsChecked="True"/>
+          <RadioButton x:Name="rbtn_ratio2" Content="3:4"/>
+          <RadioButton x:Name="rbtn_ratio3" Content="22:9"/>
+        </StackPanel>
+        <Label Content="Genre:" Grid.Row="5" Margin="10"/>
+        <ComboBox x:Name="cbx_genre" IsEditable="True" Grid.Row="5" Grid.Column="1" Margin="15">
+          <ComboBoxItem Content="Sci-Fi"/>
+          <ComboBoxItem Content="Epic Space Opera"/>
+          <ComboBoxItem Content="Fantasy"/>
+          <ComboBoxItem Content="Romance"/>
+          <ComboBoxItem Content="Kids"/>
+          <ComboBoxItem Content="Thriller"/>
+          <ComboBoxItem Content="Action and Adventure" IsSelected="True"/>
+          <ComboBoxItem Content="Horror"/>
+          <ComboBoxItem Content="Comedy"/>
+          <ComboBoxItem Content="Western"/>
+          <ComboBoxItem Content="Musical"/>
+          <ComboBoxItem Content="Drama"/>
+          <ComboBoxItem Content="Sports"/>
+        </ComboBox>
+        <Button x:Name="btn_save" Content="Gem" Grid.Row="6" Grid.Column="1" Margin="20, 10, 50, 10" Click="btn_save_Click"/>
+      </Grid>
+    </GroupBox>
+    <GroupBox
+      Header="Alle film" Margin="5,10,10,10" Grid.Column="2">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="1*"/>
+          <RowDefinition Height="1*"/>
+          <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+          <Label Content="Søg titel:" Grid.Row="0" Grid.Column="0"/>
+          <TextBox/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+          <Label Content="Søg efter Udgivelsesdato fra:" Grid.Row="1" Grid.Column="0"/>
+        </StackPanel>
+        <DataGrid Grid.Row="2">
+          
+        </DataGrid>
+      </Grid>
+    </GroupBox>
+  </Grid>
+</Window>
