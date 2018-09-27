@@ -23,13 +23,49 @@ namespace EX4_WPFControls
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
+            Mr.AddNew(new Movie("Star Trek: Beyond", "Sci-Fi", "2.35:1", true, "Justin Lin", new DateTime(2016, 07, 22), 1));
+            Mr.AddNew(new Movie("Star Wars: The Last Jedi", "Epic Space Opera", "2.39:1", true, "Ryan Johnson", new DateTime(2017, 12, 15), 1));
+        }
+        private MovieRepository mr = new MovieRepository();
+        private List<string> genres = new List<string>(){
+            "Sci-Fi",
+            "Epic Space Opera",
+            "Fantasy",
+            "Romance",
+            "Kids",
+            "Thriller",
+            "Action and Adventure",
+            "Horror",
+            "Comedy",
+            "Western",
+            "Musical",
+            "Drama",
+            "Sports"
+        };
+
+        public List<string> Genres
+        {
+            get { return genres; }
+            set { genres = value; }
         }
 
-        public MovieRepository mr = new MovieRepository();
+        public MovieRepository Mr { get => mr; set => mr = value; }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            if (tbx_title != null && dtp_releaseDate != null &&tbx_instructor !=null && cbx_genre != null)
+            
+        }
+
+        private void btn_deleteSelected_Click(object sender, RoutedEventArgs e)
+        {
+            Mr.RemoveMovie(dgr_movies.SelectedItem as Movie);
+        }
+
+
+        private void btn_new_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbx_title != null && dtp_releaseDate != null && tbx_instructor != null && cbx_genre.SelectedItem != null)
             {
                 string genre = cbx_genre.SelectedItem.ToString();
                 string format;
@@ -58,9 +94,10 @@ namespace EX4_WPFControls
                 DateTime releaseDate = dtp_releaseDate.SelectedDate.Value;
                 string title = tbx_title.Text;
                 int id = 1;
-                Movie m = new Movie(genre, format, isColor, director, releaseDate, title, id);
-                mr.AddNew(m);
+                Movie m = new Movie(title, genre, format, isColor, director, releaseDate, id);
+                Mr.AddNew(m);
             }
         }
+
     }
 }

@@ -9,11 +9,14 @@ namespace EX4_WPFControls
 {
     public class MovieRepository
     {
-        ObservableCollection<Movie> movies = new ObservableCollection<Movie>
+        private ObservableCollection<Movie> movies = new ObservableCollection<Movie>();
+
+        public ObservableCollection<Movie> Movies
         {
-            new Movie("Sci-Fi", "2.35:1", true, "Justin Lin", new DateTime(2016,07,22), "Star Trek: Beyond", 1),
-            new Movie("Epic Space Opera", "2.39:1", true, "Ryan Johnson", new DateTime(2017,12,15), "Star Wars: The Last Jedi", 1)
-        };
+            get { return movies; }
+            set { movies = value; }
+        }
+
 
         public ObservableCollection<Movie> GetAll()
         {
@@ -23,6 +26,14 @@ namespace EX4_WPFControls
         public void AddNew(Movie movie)
         {
             movies.Add(movie);
+        }
+
+        public void RemoveMovie(Movie movie)
+        {
+            if (movies.Contains(movie))
+            {
+                movies.Remove(movie);
+            }
         }
         public void Update(Movie movieToUpdate)
         {

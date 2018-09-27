@@ -16,15 +16,32 @@ namespace EX4_WPFControls
         private string format;
         private string genre;
 
-        public Movie(string genre, string format, bool isColor, string director, DateTime releaseDate, string title, int id)
+        public Movie(string title, string genre, string format, bool isColor, string director, DateTime releaseDate,  int id)
         {
+            Title = title;
             Genre = genre;
             Format = format;
             IsColor = isColor;
             Director = director;
             ReleaseDate = releaseDate;
-            Title = title;
             Id = id;
+        }
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        public string Director
+        {
+            get { return director; }
+            set { director = value; }
+        }
+
+        public DateTime ReleaseDate
+        {
+            get { return releaseDate; }
+            set { releaseDate = value; }
         }
 
         public string Genre
@@ -43,24 +60,6 @@ namespace EX4_WPFControls
         {
             get { return isColor; }
             set { isColor = value; }
-        }
-
-        public string Director
-        {
-            get { return director; }
-            set { director = value; }
-        }
-
-        public DateTime ReleaseDate
-        {
-            get { return releaseDate; }
-            set { releaseDate = value; }
-        }
-
-        public string Title
-        {
-            get { return title; }
-            set { title = value; }
         }
 
         public int Id
