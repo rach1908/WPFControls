@@ -15,7 +15,6 @@ namespace EX4_WPFControls
         private bool isColor;
         private string format;
         private string genre;
-
         public Movie(string title, string genre, string format, bool isColor, string director, DateTime releaseDate,  int id)
         {
             Title = title;
@@ -67,6 +66,5 @@ namespace EX4_WPFControls
             get { return id; }
             set { id = value; }
         }
-
     }
 }

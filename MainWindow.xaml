@@ -13,7 +13,7 @@
     </Grid.ColumnDefinitions>
     <!--Left Groupbox-->
     <GroupBox Header="Film(ny)" Margin="10,10,5,10" Grid.ColumnSpan="1">
-      <Grid DataContext="dgr_movies.SelectedItem">
+      <Grid DataContext="{Binding Path=SelectedItem, ElementName=dgr_movies}">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="2*"/>
           <ColumnDefinition Width="3*"/>
@@ -27,14 +27,14 @@
           <RowDefinition Height="2*"/>
           <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Label Content="Titel:" Grid.Row="0" Margin="10"/>
+        <Label Content="Titel" Grid.Row="0" Margin="10"/>
         <TextBox x:Name="tbx_title" Text="{Binding Path=Title}" Grid.Column="1" Margin="10"/>
         <Label Content="Udgivelses-dato:" Grid.Row="1" Margin="10"/>
-        <DatePicker x:Name="dtp_releaseDate" Grid.Row="1" Grid.Column="1" Margin="10"/>
+        <DatePicker x:Name="dpr_releaseDate" SelectedDate="{Binding Path=ReleaseDate}" Grid.Row="1" Grid.Column="1" Margin="10"/>
         <Label Content="Instruktør:" Grid.Row="2" Margin="10"/>
-        <TextBox x:Name="tbx_instructor" Text="&#xD;&#xA;" Grid.Row="2" Grid.Column="1" Margin="10"/>
+        <TextBox x:Name="tbx_instructor" Text="{Binding Path=Director}" Grid.Row="2" Grid.Column="1" Margin="10"/>
         <Label Content="Farve:" Grid.Row="3" Margin="10"/>
-        <CheckBox x:Name="chx_color" Grid.Row="3" Grid.Column="1" Margin="10, 20, 10, 10"/>
+        <CheckBox x:Name="chx_color" Grid.Row="3" IsChecked="{Binding Path=IsColor}" Grid.Column="1" Margin="10, 20, 10, 10"/>
         <Label Content="Format:" Grid.Row="4" Margin="10"/>
         <StackPanel x:Name="spl_ratio" Grid.Row="4" Grid.Column="1" Margin="10">
           <RadioButton x:Name="rbtn_ratio1" Content="16:9" IsChecked="True"/>
@@ -42,7 +42,22 @@
           <RadioButton x:Name="rbtn_ratio3" Content="22:9"/>
         </StackPanel>
         <Label Content="Genre:" Grid.Row="5" Margin="10"/>
-        <ComboBox x:Name="cbx_genre" IsEditable="True" Grid.Row="5" Grid.Column="1" Margin="15" ItemsSource="{Binding Path=Genres}">
+        <ComboBox x:Name="cbx_genre" IsEditable="True"  Grid.Row="5" Grid.Column="1" Margin="15">
+          <ComboBoxItem Content="Sci-Fi"/>
+          <ComboBoxItem Content="Epic Space Opera"/>
+          <ComboBoxItem Content="Fantasy"/>
+          <ComboBoxItem Content="Romance"/>
+          <ComboBoxItem Content="Fantasy"/>
+          <ComboBoxItem Content="Kids"/>
+          <ComboBoxItem Content="Thriller"/>
+          <ComboBoxItem Content="Action and Adventure"/>
+          <ComboBoxItem Content="Horror"/>
+          <ComboBoxItem Content="Comedy"/>
+          <ComboBoxItem Content="Western"/>
+          <ComboBoxItem Content="Musical"/>
+          <ComboBoxItem Content="Drama"/>
+          <ComboBoxItem Content="Sports"/>
+          <ComboBoxItem Content="Weeb Shit" Visibility="Hidden"/>
         </ComboBox>
         <Button x:Name="btn_new" Content="Ny" Grid.Row="6" Margin="20, 10, 20, 10" Click="btn_new_Click"/>
         <Button x:Name="btn_save" Content="Gem" Grid.Row="6" Grid.Column="1" Margin="20, 10, 50, 10" Click="btn_save_Click"/>
@@ -60,20 +75,20 @@
         </Grid.RowDefinitions>
         <DockPanel Margin="5" Grid.Row="0">
           <Label Content="Søg titel:" Grid.Row="0" Grid.Column="0"/>
-          <TextBox DockPanel.Dock="Right"/>
+          <TextBox x:Name="tbx_search" DockPanel.Dock="Right" TextChanged="tbx_search_TextChanged"/>
         </DockPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
           <Label Content="Søg efter Udgivelsesdato:" Grid.Row="1" Grid.Column="0"/>
           <StackPanel Orientation="Horizontal" Margin="15, 0, 15, 0">
             <Label Content="Fra"/>
-            <DatePicker/>
+            <DatePicker x:Name="dpr_searchFrom" SelectedDateChanged="dpr_searchFrom_SelectedDateChanged"/>
           </StackPanel>
           <StackPanel Orientation="Horizontal">
             <Label Content="Til"/>
-            <DatePicker/>
+            <DatePicker x:Name="dpr_searchTo" SelectedDateChanged="dpr_searchTo_SelectedDateChanged"/>
           </StackPanel>
         </StackPanel>
-        <DataGrid x:Name="dgr_movies"  Grid.Row="2" Margin="5" ItemsSource="{Binding Path=Movies}" IsReadOnly="True" CanUserResizeRows="False"/>
+        <DataGrid x:Name="dgr_movies"  Grid.Row="2" Margin="5" ItemsSource="{Binding Path=Movies}" IsReadOnly="True" CanUserResizeRows="False" SelectionChanged="dgr_movies_SelectionChanged"/>
         <Button Grid.Row="4" x:Name="btn_deleteSelected"  Content="Slet Valgte" Width="100" HorizontalAlignment="Right" Click="btn_deleteSelected_Click"/>
       </Grid>
     </GroupBox>
